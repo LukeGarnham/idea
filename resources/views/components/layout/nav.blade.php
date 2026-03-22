@@ -10,7 +10,7 @@
                 <form method="POST" action="/logout">
                     @csrf
                     @method('DELETE')
-                    <button class="">Log Out</button>
+                    <button class="" data-test="logout-button">Log Out</button>
                 </form>
             @else
                 <a href="/login" class="">Sign In</a>

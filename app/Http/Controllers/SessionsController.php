@@ -29,6 +29,6 @@ class SessionsController extends Controller
                 ->withInput();
         }
         $request->session()->regenerate();
-        return redirect()->intended('/')->with('succcess', "You are now logged in.");
+        return redirect()->intended('/')->with('success', "You are now logged in.");
     }
 }

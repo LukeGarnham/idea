@@ -12,11 +12,6 @@ class SessionsController extends Controller
     {
         return view("auth.login");
     }
-    public function destroy()
-    {
-        Auth::logout();
-        return redirect('/');
-    }
     public function store(Request $request)
     {
         $attributes = $request->validate([
@@ -29,6 +24,13 @@ class SessionsController extends Controller
                 ->withInput();
         }
         $request->session()->regenerate();
-        return redirect()->intended('/')->with('success', "You are now logged in.");
+        return redirect()->intended('/')->with('succcess', "You are now logged in.");
+    }
+    public function destroy(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
 }

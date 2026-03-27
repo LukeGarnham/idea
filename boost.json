@@ -1,6 +1,6 @@
 {
     "agents": [
-        "copilot"
+        "codex"
     ],
     "guidelines": true,
     "herd_mcp": true,

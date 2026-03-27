@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 test('it logs in a user', function () {
     $user = User::factory()->create([

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -27,6 +29,7 @@ class RegisteredUserController extends Controller
             'password' => $request->password,
         ]);
         Auth::login($user);
-        return redirect('/')->with('success', "Registration complete!");
+
+        return redirect('/')->with('success', 'Registration complete!');
     }
 }

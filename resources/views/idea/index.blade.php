@@ -8,31 +8,31 @@
         <div>
             <a href="/ideas" class="btn {{ in_array(request()->status, App\IdeaStatus::values()) ? 'btn-outline' : '' }}">All <span class="text-xs pl-3">{{ $statusCounts->get('all') }}</span></a>
             @foreach ($statuses as $status)
-            <a
-                href="/ideas?status={{ $status->value }}"
-                class="btn {{ request('status') === $status->value ? '' : 'btn-outline' }}">
-                {{ $status->label() }} <span class="text-xs pl-3">{{ $statusCounts->get($status->value) }}</span>
-            </a>
+                <a
+                    href="/ideas?status={{ $status->value }}"
+                    class="btn {{ request('status') === $status->value ? '' : 'btn-outline' }}">
+                    {{ $status->label() }} <span class="text-xs pl-3">{{ $statusCounts->get($status->value) }}</span>
+                </a>
             @endforeach
         </div>
 
         <div class="mt-10 text-muted-foreground">
             <div class="grid md:grid-cols-2 gap-6">
                 @forelse($ideas as $idea)
-                <x-card href="{{ route('idea.show', $idea) }}">
-                    <h3 class="text-foreground text-lg">: {{ $idea->title }}</h3>
-                    <div class="mt-1">
-                        <x-idea.status-label status="{{ $idea->status }}">
-                            {{ $idea->status->label() }}
-                        </x-idea.status-label>
-                    </div>
-                    <div class="mt-5 line-clamp-3">{{ $idea->description }}</div>
-                    <div class="mt-4">{{ $idea->created_at->diffForHumans() }}</div>
-                </x-card>
+                    <x-card href="{{ route('idea.show', $idea) }}">
+                        <h3 class="text-foreground text-lg">{{ $idea->title }}</h3>
+                        <div class="mt-1">
+                            <x-idea.status-label status="{{ $idea->status }}">
+                                {{ $idea->status->label() }}
+                            </x-idea.status-label>
+                        </div>
+                        <div class="mt-5 line-clamp-3">{{ $idea->description }}</div>
+                        <div class="mt-4">{{ $idea->created_at->diffForHumans() }}</div>
+                    </x-card>
                 @empty
-                <x-card>
-                    <p class="">No ideas at this time.</p>
-                </x-card>
+                    <x-card>
+                        <p class="">No ideas at this time.</p>
+                    </x-card>
                 @endforelse
             </div>
         </div>

@@ -5,10 +5,10 @@
                 < Back to ideas</a>
                     <div class="flex items-center gap-x-3">
                         <button class="btn btn-outline">Edit Idea</button>
-                        <form action="{{ route('idea.destroy', $idea) }}">
+                        <form method="POST" action="{{ route('idea.destroy', $idea) }}">
                             @csrf
-                            @method('DELETE')
-                            <button class="btn btn-outline text-red-500">Delete Idea</button>
+                            @method('delete')
+                            <button class="btn btn-outline text-red-500" type="submit">Delete Idea</button>
                         </form>
                     </div>
         </div>

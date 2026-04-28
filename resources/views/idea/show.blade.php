@@ -30,9 +30,9 @@
             @if($idea->links)
                 <div>
                     <h3 class="font-bold text-xl mt-6">Links</h3>
-                    <div class="mt-3 gap-y-2">
+                    <div class="gap-y-2">
                         @foreach ($idea->links as $link)
-                            <x-card :href="$link" class="text-primary font-medium flex items-center gap-x-3">
+                            <x-card :href="$link" target="_blank" class="text-primary font-medium flex items-center gap-x-3 mt-3">
                                 {{ $link }}
                             </x-card>
                         @endforeach

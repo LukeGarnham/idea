@@ -20,6 +20,6 @@ it('creates a new idea', function () {
         'title' => 'Some Example Title',
         'status' => 'completed',
         'description' => 'An example description',
-        'links' => ['https://laracasts.com']
+        'links' => ['https://laracasts.com'],
     ]);
 });

@@ -53,6 +53,8 @@
                     status: 'pending',
                     newLink: '',
                     links: [],
+                    newStep: '',
+                    steps: [],
                 }"
                 method="POST"
                 action="{{ route('idea.store') }}">
@@ -91,16 +93,54 @@
 
                     <div>
                         <fieldset class="space-y-3">
+                            <legend class="label">Actionable Steps</legend>
+                            <template x-for="(step, index) in steps" :key="step">
+                                <div class="flex gap-x-2 items-center">
+                                    <input type="text" name="steps[]" x-model="step" class="input">
+                                    <button
+                                        type="button"
+                                        class="text-xl form-muted-icon ml-2"
+                                        @click="steps.splice(index,1);"
+                                        aria-label="Remove step">
+                                        ✕
+                                    </button>
+                                </div>
+                            </template>
+                            <div class="flex gap-x-2 items-center">
+                                <input
+                                    x-model="newStep"
+                                    type="text"
+                                    id="new-step"
+                                    data-test="new-step"
+                                    name="new-step"
+                                    placeholder="What needs to be done?"
+                                    class="input flex-1"
+                                    spellcheck="false">
+                                <button
+                                    type="button"
+                                    class="text-xl form-muted-icon rotate-45 ml-2"
+                                    data-test="submit-new-step-button"
+                                    @click="steps.push(newStep.trim()); newStep='';"
+                                    :disabled="newStep.trim().length===0"
+                                    aria-label="Add a new step">
+                                    ✕
+                                </button>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div>
+                        <fieldset class="space-y-3">
                             <legend class="label">Links</legend>
                             <template x-for="(link, index) in links" :key="link">
                                 <div class="flex gap-x-2 items-center">
                                     <input type="text" name="links[]" x-model="link" class="input">
                                     <button
                                         type="button"
-                                        class="text-xl form-muted-icon"
+                                        class="text-xl form-muted-icon ml-2"
                                         @click="links.splice(index,1);"
                                         aria-label="Remove link">
-                                        x
+                                        ✕
                                     </button>
                                 </div>
                             </template>
@@ -117,12 +157,12 @@
                                     spellcheck="false">
                                 <button
                                     type="button"
-                                    class="text-3xl form-muted-icon"
+                                    class="text-xl form-muted-icon rotate-45 ml-2"
                                     data-test="submit-new-link-button"
                                     @click="links.push(newLink.trim()); newLink='';"
                                     :disabled="newLink.trim().length===0"
                                     aria-label="Add a new link">
-                                    +
+                                    ✕
                                 </button>
                             </div>
                         </fieldset>

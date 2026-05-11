@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Idea;
 use App\Models\User;
 
 it('creates a new idea', function () {
@@ -12,14 +11,22 @@ it('creates a new idea', function () {
         ->fill('description', 'An example description')
         ->fill('@new-link', 'https://laracasts.com')
         ->click('@submit-new-link-button')
+        ->fill('@new-link', 'https://laravel.com')
+        ->click('@submit-new-link-button')
+        ->fill('@new-step', 'Do step 1')
+        ->click('@submit-new-step-button')
+        ->fill('@new-step', 'Do step 2')
+        ->click('@submit-new-step-button')
         ->click('Create')
-        ->assertPathIs('/ideas');
+        ->assertPathIs('/ideas')
+        ->assertSee('Some Example Title')
+        ->assertNoJavaScriptErrors();
 
-    expect(Idea::count())->toBe(1);
-    expect($user->ideas()->first())->toMatchArray([
+    expect($idea = $user->ideas()->first())->toMatchArray([
         'title' => 'Some Example Title',
         'status' => 'completed',
         'description' => 'An example description',
-        'links' => ['https://laracasts.com'],
+        'links' => ['https://laracasts.com', 'https://laravel.com'],
     ]);
+    expect($idea->steps)->toHaveCount(2);
 });

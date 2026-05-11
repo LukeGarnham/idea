@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Actions\CreateIdea;
-use App\Http\Requests\StoreIdeaRequest;
-use App\Http\Requests\UpdateIdeaRequest;
+use App\Actions\UpdateIdea;
+use App\Http\Requests\IdeaRequest;
 use App\IdeaStatus;
 use App\Models\Idea;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
 class IdeaController extends Controller
@@ -46,7 +47,7 @@ class IdeaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreIdeaRequest $request, CreateIdea $action): RedirectResponse
+    public function store(IdeaRequest $request, CreateIdea $action): RedirectResponse
     {
         $action->handle($request->safe()->all());
 
@@ -58,6 +59,8 @@ class IdeaController extends Controller
      */
     public function show(Idea $idea): View
     {
+        Gate::authorize('workWith', $idea);
+
         return view('idea.show', [
             'idea' => $idea,
         ]);
@@ -74,9 +77,13 @@ class IdeaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateIdeaRequest $request, Idea $idea): void
+    public function update(IdeaRequest $request, Idea $idea, UpdateIdea $action): RedirectResponse
     {
-        //
+        // dd($request->all());
+        Gate::authorize('workWith', $idea);
+        $action->handle($request->safe()->all(), $idea);
+
+        return back()->with('success', 'Idea updated.');
     }
 
     /**
@@ -84,7 +91,8 @@ class IdeaController extends Controller
      */
     public function destroy(Idea $idea): RedirectResponse
     {
-        // TODO: authorise this is allowed
+        Gate::authorize('workWith', $idea);
+
         $idea->delete();
 
         return to_route('idea.index');

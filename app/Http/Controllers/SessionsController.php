@@ -27,7 +27,7 @@ class SessionsController extends Controller
         }
         $request->session()->regenerate();
 
-        return redirect()->intended('/')->with('succcess', 'You are now logged in.');
+        return redirect()->intended(route('idea.index'))->with('succcess', 'You are now logged in.');
     }
 
     public function destroy(Request $request)

@@ -1,20 +1,21 @@
 <x-layout>
     <div class="py-8 max-w-4xl mx-auto">
         <div class="flex justify-between items-center">
-            <a href="{{ route('idea.index') }}" class="text-sm font-medium">
-                < Back to ideas</a>
-                    <div class="flex items-center gap-x-3">
-                        <button
-                            x-data
-                            class="btn btn-outline"
-                            data-test="edit-idea-button"
-                            @click="$dispatch('open-modal', 'edit-idea')">Edit Idea</button>
-                        <form method="POST" action="{{ route('idea.destroy', $idea) }}">
-                            @csrf
-                            @method('delete')
-                            <button class="btn btn-outline text-red-500" type="submit">Delete Idea</button>
-                        </form>
-                    </div>
+            <a href="{{ route('idea.index') }}" class="text-sm font-medium flex items-center gap-x-3">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to ideas</a>
+            <div class="flex items-center gap-x-3">
+                <button
+                    x-data
+                    class="btn btn-outline"
+                    data-test="edit-idea-button"
+                    @click="$dispatch('open-modal', 'edit-idea')">Edit Idea</button>
+                <form method="POST" action="{{ route('idea.destroy', $idea) }}">
+                    @csrf
+                    @method('delete')
+                    <button class="btn btn-outline text-red-500" type="submit">Delete Idea</button>
+                </form>
+            </div>
         </div>
         <div class="mt-8 space-y-6">
             @if ($idea->image_path)
@@ -65,6 +66,7 @@
                     <div class="gap-y-2">
                         @foreach ($idea->links as $link)
                             <x-card :href="$link" target="_blank" class="text-primary font-medium flex items-center gap-x-3 mt-3">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                 {{ $link }}
                             </x-card>
                         @endforeach

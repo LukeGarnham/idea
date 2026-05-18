@@ -15,7 +15,7 @@ label {
     outline-offset: 2px;
 }
 
-.input:placeholder {
+.input::placeholder {
     color: var(--color-muted-foreground);
 }
 
@@ -26,7 +26,7 @@ label {
         0 0 calc(var(--spacing) * 1) var(--color-primary);
 }
 
-@media (min-width: var(--breakpoint-mid)) {
+@media (min-width: 768px) {
     .input {
         font-size: var(--text-sm);
     }
@@ -56,7 +56,7 @@ label {
         0 0 calc(var(--spacing) * 1) var(--color-primary);
 }
 
-@media (min-width: var(--breakpoint-md)) {
+@media (min-width: 768px) {
     .textarea {
         font-size: var(--text-sm);
     }

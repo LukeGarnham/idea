@@ -1,58 +1,43 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/LukeGarnham/idea/blob/main/public/images/logo.png?raw=true" width="200" alt="Idea project Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Laravel Project - Idea
 
-## About Laravel
+I have been a PHP developer for 5 years, working initially with WordPress sites and more recently in a Full Stack development role using the CodeIgniter framework.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Laravel has emerged as a popular framework, with developers in high demand. In recent months, I decided to learn about the Laravel framework in my spare time, primary using the [documentation](https://laravel.com/docs), [YouTube](https://www.youtube.com/) tutorials and [Laracasts](https://laracasts.com/).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This project is my first full build, and originates from the [Laravel From Scratch 2026](https://laracasts.com/series/laravel-from-scratch-2026) tutorial series on [Laracasts](https://laracasts.com/), taught by the excellent [Jeffrey Way](https://laracasts.com/@JeffreyWay).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Users also have the ability to update their account details.
 
-## Learning Laravel
+I have hosted the finished project on my VPS, which you can access [here](https://idea.thewebleg.co.uk/). Feel free to [register an account](https://idea.thewebleg.co.uk/register), then explore the site.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## What's the big 'Idea'?
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+The project is a simple web app, where users must register for an account, sign in and create ideas.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+Each idea **must** have a title and status. They **can** also have a description, featured image, actionable steps (multiple), and links (multiple).
 
-## Agentic Development
+There is full CRUD functionality for ideas. Users can only view, update and delete their own ideas.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## The build
 
-```bash
-composer require laravel/boost --dev
+- [Laravel](https://laravel.com/docs/13.x): This project was built (in VSCode) with the Laravel framework (v13.1.1) via [Laravel Herd](https://herd.laravel.com/), using many of its built-in tools such as artisan, tinker, and database migrations. The frontend views are built using blade templates.
+- [TailWind CSS](https://tailwindcss.com/): Installed using Vite, TailWind (v4) provides a vast library of CSS styling (via classes) for this project.
+- [Alpine JS](https://alpinejs.dev/): This lightweight JS library was used to add dynamic elements to the project, in particular for adding multiple actionable steps and links.
+- [Font Awesome](https://fontawesome.com/): The tutorial I followed had a wide variety of icons imported into it which I did not have access to, so instead I used the free icons available at Font Awesome (v7.2).
+- [Rector](https://github.com/rectorphp/rector): I used rector to refactor my PHP code.
 
-php artisan boost:install
-```
+## Bug fixes
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+- Updating an idea with changed links doesn't seem to save correctly.
+- If an create or update fails, there is no warning notification, this occurs particularly when an invalid image is uploaded as a featured image.
+- Favicon isn't showing on all pages.
+- Check/Test emails are issued as expected i.e. when a user changes their email address, the old email address should be notified via email.
 
-## Contributing
+## Future improvements
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- If editing an idea fails, can we open the modal on reload?
+- Allow users to collaborate on ideas together, either by through share functionality or a company level grouping.
+- Add some padding below the ideas.
+- Add a footer.

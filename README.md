@@ -22,7 +22,7 @@ There is full CRUD functionality for ideas. Users can only view, update and dele
 
 ## The build
 
-- [Laravel](https://laravel.com/docs/13.x): This project was built (in VSCode) with the Laravel framework (v13.1.1) via [Laravel Herd](https://herd.laravel.com/), using many of its built-in tools such as artisan, tinker, and database migrations. The frontend views are built using blade templates.
+- [Laravel](https://laravel.com/docs/13.x): This project was built (in VSCode) with the Laravel framework (v13.1.1) via [Laravel Herd](https://herd.laravel.com/), using many of its built-in tools such as artisan, tinker, [Laravel Boost](https://laravel.com/ai/boost) with [Codex](https://chatgpt.com/codex/) as my AI agent, and database migrations. The frontend views are built using blade templates.
 - [TailWind CSS](https://tailwindcss.com/): Installed using Vite, TailWind (v4) provides a vast library of CSS styling (via classes) for this project.
 - [Alpine JS](https://alpinejs.dev/): This lightweight JS library was used to add dynamic elements to the project, in particular for adding multiple actionable steps and links.
 - [Font Awesome](https://fontawesome.com/): The tutorial I followed had a wide variety of icons imported into it which I did not have access to, so instead I used the free icons available at Font Awesome (v7.2).
@@ -30,14 +30,14 @@ There is full CRUD functionality for ideas. Users can only view, update and dele
 
 ## Bug fixes
 
-- Updating an idea with changed links doesn't seem to save correctly.
-- If an create or update fails, there is no warning notification, this occurs particularly when an invalid image is uploaded as a featured image.
-- Favicon isn't showing on all pages.
+- ~~Saving text such as "Let's add a description." outputs as "Let&#039;s add a description."~~
+- ~~If a create or update fails, there is no warning notification, this occurs particularly when an invalid image is uploaded as a featured image.~~
+- ~~Favicon isn't showing on all pages.~~
 - Check/Test emails are issued as expected i.e. when a user changes their email address, the old email address should be notified via email.
 
 ## Future improvements
 
-- If editing an idea fails, can we open the modal on reload?
+- ~~If editing an idea fails, can we open the modal on reload?~~
 - Allow users to collaborate on ideas together, either by through share functionality or a company level grouping.
 - Add some padding below the ideas.
 - Add a footer.

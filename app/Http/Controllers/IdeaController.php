@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
+use Throwable;
 
 class IdeaController extends Controller
 {
@@ -25,7 +26,7 @@ class IdeaController extends Controller
         $user = Auth::user();
         $ideas = $user
             ->ideas()
-            ->when(in_array($request->status, IdeaStatus::values()), fn ($query) => $query->where('status', $request->status))
+            ->when(in_array($request->status, IdeaStatus::values()), fn($query) => $query->where('status', $request->status))
             ->latest()
             ->get();
 
@@ -81,7 +82,15 @@ class IdeaController extends Controller
     {
         // dd($request->all());
         Gate::authorize('workWith', $idea);
-        $action->handle($request->safe()->all(), $idea);
+        try {
+            $action->handle($request->safe()->all(), $idea);
+        } catch (Throwable $exception) {
+            report($exception);
+
+            return back()
+                ->withInput()
+                ->with('error', 'Idea could not be updated. Check the application logs for details.');
+        }
 
         return back()->with('success', 'Idea updated.');
     }

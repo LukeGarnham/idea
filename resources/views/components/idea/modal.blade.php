@@ -11,8 +11,7 @@
                     steps: @js(old('steps', $idea->steps->map->only(['id', 'description', 'completed']))),
         }"
         method="POST"
-        action="{{ $idea->exists ? route('idea.update', $idea) : route('idea.store') }}"
-    >
+        action="{{ $idea->exists ? route('idea.update', $idea) : route('idea.store') }}">
         @csrf
         @if ($idea->exists)
             @method('PATCH')
@@ -21,7 +20,7 @@
             <x-form.field
                 label="Enter a title for your idea"
                 name="title"
-                value="{{ $idea->title }}"
+                :value="$idea->title"
                 placeholder="Enter a title for your idea."
                 autofocus
                 required />
@@ -47,7 +46,7 @@
             <x-form.field
                 label="Description"
                 name="description"
-                value="{{ $idea->description }}"
+                :value="$idea->description"
                 type="textarea"
                 placeholder="Describe your idea . . ." />
 
@@ -116,7 +115,7 @@
                     <legend class="label">Links</legend>
                     <template x-for="(link, index) in links" :key="link">
                         <div class="flex gap-x-2 items-center">
-                            <input type="text" name="links[]" x-model="link" class="input">
+                            <input type="url" name="links[]" x-model="link" class="input">
                             <button
                                 type="button"
                                 class="text-xl form-muted-icon ml-2"

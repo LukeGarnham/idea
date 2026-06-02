@@ -16,6 +16,7 @@
         @if ($idea->exists)
             @method('PATCH')
         @endif
+        <input type="hidden" name="_modal" value="{{ $idea->exists ? 'edit-idea' : 'create-idea' }}">
         <div class="space-y-6">
             <x-form.field
                 label="Enter a title for your idea"
@@ -56,7 +57,7 @@
                 @if ($idea->image_path)
                     <div class="space-y-2">
                         <img src="{{ asset('storage/' . $idea->image_path) }}" alt="{{ $idea->description }}" class="w-full h-auto object-cover">
-                        <button type="button" class="btn btn-outline w-full h-10 rounded-lg" form="delete-image-form">Remove Image</button>
+                        <button type="submit" class="btn btn-outline w-full h-10 rounded-lg" form="delete-image-form">Remove Image</button>
                     </div>
                 @endif
 
@@ -66,6 +67,7 @@
                     accept="image/*"
                     @change="$event.target.form.enctype = $event.target.files.length ? 'multipart/form-data' : 'application/x-www-form-urlencoded'">
                 <x-form.error name="image" />
+                <small class="text-xs ">Accepts: jpg, jpeg, png, bmp, gif, or webp (up to 5MB)</small>
             </div>
 
             <div>

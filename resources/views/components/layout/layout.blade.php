@@ -25,7 +25,29 @@
             x-init="setTimeout(() => show = false, 3000)"
             x-show="show"
             x-transition.opacity.duration.300ms
-            class="bg-primary px-4 py-3 absolute bottom-4 right-4 rounded-lg">
+            class="bg-primary px-4 py-3 absolute bottom-4 right-4 rounded-lg z-51">
+            {{ $value }}
+        </div>
+    @endsession
+
+    @if ($errors->any())
+        <div
+            x-data="{ show: true }"
+            x-init="setTimeout(() => show = false, 5000)"
+            x-show="show"
+            x-transition.opacity.duration.300ms
+            class="bg-red-600 text-white px-4 py-3 absolute bottom-4 right-4 rounded-lg z-51">
+            {{ $errors->first() }}
+        </div>
+    @endif
+
+    @session('error')
+        <div
+            x-data="{ show: true }"
+            x-init="setTimeout(() => show = false, 5000)"
+            x-show="show"
+            x-transition.opacity.duration.300ms
+            class="bg-red-600 text-white px-4 py-3 absolute bottom-4 right-4 rounded-lg z-51">
             {{ $value }}
         </div>
     @endsession

@@ -1,7 +1,10 @@
 @props(['name', 'title'])
 
 <div
-    x-data="{show: false, name: @js($name)}"
+    x-data="{
+        show: @js($errors->any() && old('_modal') === $name),
+        name: @js($name)
+    }"
     x-show="show"
     @open-modal.window="if($event.detail === name) show = true;"
     @close-modal="show = false"
